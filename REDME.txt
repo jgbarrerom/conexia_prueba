@@ -1,0 +1,5 @@
+El archivo *.sql contiene los script para crear las tablas en el motor MySQL
+Para desplegar el proyecto se realizo en el servidor de aplicaciones glassfish,
+en el archivo Persistence.xml se encuentran los datos para realizar la conexion
+con la base de datos, el proyecto esta desarrollado para usar librerias mediante
+MAVEN, en netbeans
