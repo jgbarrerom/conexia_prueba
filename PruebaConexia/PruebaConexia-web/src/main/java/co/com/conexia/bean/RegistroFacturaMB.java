@@ -8,6 +8,7 @@ package co.com.conexia.bean;
 import co.com.conexia.entity.Factura;
 import co.com.conexia.persistencia.FacturaEntityManager;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 
@@ -17,7 +18,7 @@ import javax.enterprise.context.RequestScoped;
  */
 @Named(value = "registroFactura")
 @RequestScoped
-public class RegistroFactura {
+public class RegistroFacturaMB {
     
     private List<Factura> listaFactura;
     private FacturaEntityManager em;
@@ -25,7 +26,11 @@ public class RegistroFactura {
     /**
      * Creates a new instance of RegistroFactura
      */
-    public RegistroFactura() {
+    public RegistroFacturaMB() {
+    }
+    
+    @PostConstruct
+    public void init(){
         em = new FacturaEntityManager();
         listaFactura = em.obtenerTodos();
     }

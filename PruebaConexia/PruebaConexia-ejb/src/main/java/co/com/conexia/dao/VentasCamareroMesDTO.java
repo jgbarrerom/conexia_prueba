@@ -17,7 +17,7 @@ public class VentasCamareroMesDTO {
     private String apellido1;
     private String apellido2;
     private BigInteger totalVenta;
-    private int mesVenta;
+    private Integer mesVenta;
 
     public VentasCamareroMesDTO(String nombre, String apellido1, String apellido2, BigInteger totalVenta, Integer mesVenta) {
         this.nombre = nombre;
@@ -59,11 +59,11 @@ public class VentasCamareroMesDTO {
         this.totalVenta = totalVenta;
     }
 
-    public int getMesVenta() {
+    public Integer getMesVenta() {
         return mesVenta;
     }
 
-    public void setMesVenta(int mesVenta) {
+    public void setMesVenta(Integer mesVenta) {
         this.mesVenta = mesVenta;
     }
 

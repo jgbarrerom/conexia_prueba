@@ -10,6 +10,7 @@ import co.com.conexia.entity.Factura;
 import co.com.conexia.persistencia.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.junit.After;
 import org.junit.Test;
 
 /**
@@ -27,13 +28,10 @@ public class TestConexion {
         Transaction txn = null;
         try {
             session = HibernateUtil.getSessionFac().openSession();
-            txn = session.beginTransaction();
+            if (session.find(Camarero.class, 1) == null) {
+                throw new RuntimeException("Error en consulta");
+            }
 
-            Camarero securityId = new Camarero();
-            securityId.setNombreCamarero("Jeisson");
-            session.persist(securityId);
-
-            txn.commit();
         } catch (RuntimeException e) {
             if (txn != null && txn.isActive()) {
                 txn.rollback();
@@ -45,8 +43,7 @@ public class TestConexion {
             }
         }
     }
-    
-    
+
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //
