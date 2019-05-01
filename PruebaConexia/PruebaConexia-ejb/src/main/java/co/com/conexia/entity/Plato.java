@@ -38,9 +38,6 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Plato.findByDetallePlato", query = "SELECT p FROM Plato p WHERE p.detallePlato = :detallePlato")})
 public class Plato implements Serializable {
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPlato")
-    private List<DetalleFactura> detalleFacturaList;
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -55,6 +52,8 @@ public class Plato implements Serializable {
     @Size(max = 100)
     @Column(name = "DETALLE_PLATO")
     private String detallePlato;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPlato")
+    private List<DetalleFactura> detalleFacturaList;
 
     public Plato() {
     }
@@ -95,6 +94,15 @@ public class Plato implements Serializable {
         this.detallePlato = detallePlato;
     }
 
+    @XmlTransient
+    public List<DetalleFactura> getDetalleFacturaList() {
+        return detalleFacturaList;
+    }
+
+    public void setDetalleFacturaList(List<DetalleFactura> detalleFacturaList) {
+        this.detalleFacturaList = detalleFacturaList;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -118,15 +126,6 @@ public class Plato implements Serializable {
     @Override
     public String toString() {
         return "co.com.conexia.entity.Plato[ idPlato=" + idPlato + " ]";
-    }
-
-    @XmlTransient
-    public List<DetalleFactura> getDetalleFacturaList() {
-        return detalleFacturaList;
-    }
-
-    public void setDetalleFacturaList(List<DetalleFactura> detalleFacturaList) {
-        this.detalleFacturaList = detalleFacturaList;
     }
     
 }

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <!-- connection details -->
+        <property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/CONEXIA</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password">admin</property>
+        <property name="show_sql">true</property>
+        <property name="format_sql">true</property>
+        <property name="hibernate.jdbc.use_streams_for_binary">false</property>   
+        <mapping class="co.com.conexia.entity.Camarero" />
+        <mapping class="co.com.conexia.entity.Cliente" />
+        <mapping class="co.com.conexia.entity.Cocinero" />
+        <mapping class="co.com.conexia.entity.DetalleFactura" />
+        <mapping class="co.com.conexia.entity.Factura" />
+        <mapping class="co.com.conexia.entity.Mesa" />
+        <mapping class="co.com.conexia.entity.Plato" />
+    </session-factory>
+</hibernate-configuration>

@@ -29,16 +29,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "DetalleFactura.findAll", query = "SELECT d FROM DetalleFactura d")
-    , @NamedQuery(name = "DetalleFactura.findByIdDetalle", query = "SELECT d FROM DetalleFactura d WHERE d.idDetalle = :idDetalle")})
+    , @NamedQuery(name = "DetalleFactura.findByIdDetalle", query = "SELECT d FROM DetalleFactura d WHERE d.idDetalle = :idDetalle")
+    , @NamedQuery(name = "DetalleFactura.findByUnidadesPlato", query = "SELECT d FROM DetalleFactura d WHERE d.unidadesPlato = :unidadesPlato")
+    , @NamedQuery(name = "DetalleFactura.findBySubtotalDetalle", query = "SELECT d FROM DetalleFactura d WHERE d.subtotalDetalle = :subtotalDetalle")})
 public class DetalleFactura implements Serializable {
-
-    @Column(name = "UNIDADES_PLATO")
-    private Integer unidadesPlato;
-    @Column(name = "SUBTOTAL_DETALLE")
-    private BigInteger subtotalDetalle;
-    @JoinColumn(name = "ID_PLATO", referencedColumnName = "ID_PLATO")
-    @ManyToOne(optional = false)
-    private Plato idPlato;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -46,6 +40,13 @@ public class DetalleFactura implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID_DETALLE")
     private Integer idDetalle;
+    @Column(name = "UNIDADES_PLATO")
+    private Integer unidadesPlato;
+    @Column(name = "SUBTOTAL_DETALLE")
+    private BigInteger subtotalDetalle;
+    @JoinColumn(name = "ID_PLATO", referencedColumnName = "ID_PLATO")
+    @ManyToOne(optional = false)
+    private Plato idPlato;
     @JoinColumn(name = "ID_FACTURA", referencedColumnName = "ID_FACTURA")
     @ManyToOne(optional = false)
     private Factura idFactura;
@@ -66,6 +67,30 @@ public class DetalleFactura implements Serializable {
 
     public void setIdDetalle(Integer idDetalle) {
         this.idDetalle = idDetalle;
+    }
+
+    public Integer getUnidadesPlato() {
+        return unidadesPlato;
+    }
+
+    public void setUnidadesPlato(Integer unidadesPlato) {
+        this.unidadesPlato = unidadesPlato;
+    }
+
+    public BigInteger getSubtotalDetalle() {
+        return subtotalDetalle;
+    }
+
+    public void setSubtotalDetalle(BigInteger subtotalDetalle) {
+        this.subtotalDetalle = subtotalDetalle;
+    }
+
+    public Plato getIdPlato() {
+        return idPlato;
+    }
+
+    public void setIdPlato(Plato idPlato) {
+        this.idPlato = idPlato;
     }
 
     public Factura getIdFactura() {
@@ -107,30 +132,6 @@ public class DetalleFactura implements Serializable {
     @Override
     public String toString() {
         return "co.com.conexia.entity.DetalleFactura[ idDetalle=" + idDetalle + " ]";
-    }
-
-    public Integer getUnidadesPlato() {
-        return unidadesPlato;
-    }
-
-    public void setUnidadesPlato(Integer unidadesPlato) {
-        this.unidadesPlato = unidadesPlato;
-    }
-
-    public BigInteger getSubtotalDetalle() {
-        return subtotalDetalle;
-    }
-
-    public void setSubtotalDetalle(BigInteger subtotalDetalle) {
-        this.subtotalDetalle = subtotalDetalle;
-    }
-
-    public Plato getIdPlato() {
-        return idPlato;
-    }
-
-    public void setIdPlato(Plato idPlato) {
-        this.idPlato = idPlato;
     }
     
 }

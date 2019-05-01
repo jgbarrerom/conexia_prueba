@@ -3,18 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.com.conexia.dao;
-
-import co.com.conexia.entity.Cliente;
-import java.util.List;
+package co.com.conexia.persistencia;
 
 /**
  *
  * @author jeisson
  */
-public class ClienteDAO extends GeneralDAO<Cliente>{
+public class FacturaEntityManager extends PersistenceEntityManager<Object>{
     
-    public List<Cliente> findAll(){
-        return this.obtenerTodos();
-    }
 }
