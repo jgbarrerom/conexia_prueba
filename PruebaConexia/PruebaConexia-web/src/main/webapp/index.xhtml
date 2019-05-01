@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
@@ -15,8 +16,47 @@
                 <p:column headerText="Camarero">
                     <h:outputText value="#{factura.idCamarero.nombreCamarero} #{factura.idCamarero.apellidoPaternoCamarero}"/>
                 </p:column>
+                <p:column headerText="Cliente">
+                    <h:outputText value="#{factura.idCliente.nombreCliente} #{factura.idCliente.apellidoPaternoCliente}"/>
+                </p:column>
             </p:dataTable>
-            <p:commandButton action="clienteCompras?faces-redirect=true" value="Reporte Cliente"/>
+            <p:panelGrid columns="4">
+                <p:outputLabel value="Camarero" for="listCamarero"/>
+                <p:selectOneMenu id="listCamarero" value="#{registroFactura.camSelct}">
+                    <f:selectItem noSelectionOption="true" itemLabel="Seleccione"/>
+                    <f:selectItems value="#{registroFactura.listaCamarero}" var="cama" itemValue="#{cama}" itemLabel="#{cama.nombreCamarero}"/>
+                </p:selectOneMenu>
+                <p:outputLabel value="Cliente" for="listCliente"/>
+                <p:selectOneMenu id="listCliente" value="#{registroFactura.clSelct}">
+                    <f:selectItem noSelectionOption="true" itemLabel="Seleccione"/>
+                    <f:selectItems value="#{registroFactura.listaCliente}" var="cli" 
+                                   itemLabel="#{cli.nombreCliente} #{cli.apellidoPaternoCliente}" itemValue="#{cli}"/>
+                </p:selectOneMenu>
+                <p:outputLabel value="Plato" for="listPlato"/>
+                <p:selectOneMenu id="listPlato" value="#{registroFactura.platoSelct}">
+                    <f:selectItem noSelectionOption="true" itemLabel="Seleccione"/>
+                    <f:selectItems value="#{registroFactura.listaPlato}" var="plato" itemValue="#{plato}" itemLabel="#{plato.nombrePlato}" />
+                </p:selectOneMenu>
+                <p:outputLabel value="Mesa" for="listMesa"/>
+                <p:selectOneMenu id="listMesa" value="#{registroFactura.mesaSelec}">
+                    <f:selectItem noSelectionOption="true" itemLabel="Seleccione"/>
+                    <f:selectItems value="#{registroFactura.listMesa}" var="mesa" itemValue="#{mesa}" itemLabel="#{mesa.ubicacion}" />
+                </p:selectOneMenu>
+                <p:outputLabel value="Cocinero" for="listCoci"/>
+                <p:selectOneMenu id="listCoci" value="#{registroFactura.cociSelec}">
+                    <f:selectItem noSelectionOption="true" itemLabel="Seleccione"/>
+                    <f:selectItems value="#{registroFactura.listCocinero}" var="coci" itemValue="#{coci}" itemLabel="#{coci.nombre} #{coci.apellidoPaternoCliente}" />
+                </p:selectOneMenu>
+                <p:outputLabel value="Cantidad Platos" for="cantPlato"/>
+                <p:spinner value="#{registroFactura.cantidad}"/>
+                <p:row>
+                    <p:column colspan="4">
+                        <p:commandButton value="Guardar Factura" action="#{registroFactura.guardarFactura()}"/>
+                    </p:column>
+                </p:row>
+            </p:panelGrid>
+            <h:commandButton action="clientesCompras?faces-redirect=true" value="Reporte Cliente"/>
+            <h:commandButton action="reporteVentas?faces-redirect=true" value="Reporte Ventas"/>
         </h:form>
     </h:body>
 </html>

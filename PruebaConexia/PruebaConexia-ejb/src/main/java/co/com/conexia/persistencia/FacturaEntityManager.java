@@ -20,6 +20,10 @@ import org.hibernate.Session;
  */
 public class FacturaEntityManager extends PersistenceEntityManager<Factura> {
 
+    /**
+     * 
+     * @return 
+     */
     public List<VentasCamareroMesDTO> consultarVentasMes() {
         try {
             Session se = HibernateUtil.getSessionFac().openSession();
@@ -32,6 +36,11 @@ public class FacturaEntityManager extends PersistenceEntityManager<Factura> {
         }
     }
     
+    /**
+     * 
+     * @param obj
+     * @return 
+     */
     private List<VentasCamareroMesDTO> maparDtoVentaMes(List<Object[]> obj){
         List<VentasCamareroMesDTO> listMap = new ArrayList<>();
         for(Object[] tupla : obj){

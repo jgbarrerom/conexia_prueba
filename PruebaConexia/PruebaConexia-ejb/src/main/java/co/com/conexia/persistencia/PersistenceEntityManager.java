@@ -50,8 +50,6 @@ public abstract class PersistenceEntityManager<T> {
             return qr.getResultList();
         } catch (HibernateException he) {
             throw new HibernateException("Ocurrio un error en la conexion [" + he.getMessage() + "]");
-        }finally{
-            HibernateUtil.cerrarSessionFac();
         }
     }
 }

@@ -35,7 +35,7 @@ public class HibernateUtil {
 
     public static void cerrarSessionFac() {
         if (sessionFac != null) {
-            sessionFac.close();
+            sessionFac.getCurrentSession();
         }
     }
 
