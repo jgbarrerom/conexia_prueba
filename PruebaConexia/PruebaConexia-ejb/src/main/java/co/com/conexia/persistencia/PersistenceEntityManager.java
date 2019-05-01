@@ -16,10 +16,15 @@ import org.hibernate.query.Query;
  * @author jeisson
  */
 public abstract class PersistenceEntityManager<T> {
-    
-    protected Class clase = (Class)((java.lang.reflect.ParameterizedType)getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+
+    protected Class clase = (Class) ((java.lang.reflect.ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
     private Logger log = Logger.getLogger(this.getClass());
-    
+
+    /**
+     *
+     * @param entidad
+     * @return
+     */
     public Boolean guardar(T entidad) {
         try {
             Session sesion = HibernateUtil.getSessionFac().openSession();
@@ -33,10 +38,20 @@ public abstract class PersistenceEntityManager<T> {
         }
         return Boolean.FALSE;
     }
-    
-    public List<T> obtenerTodos(){
-        Session sesion = HibernateUtil.getSessionFac().openSession();
-        Query qr = sesion.createQuery("FROM " + clase.getSimpleName());
-        return qr.getResultList();
+
+    /**
+     *
+     * @return
+     */
+    public List<T> obtenerTodos() {
+        try {
+            Session sesion = HibernateUtil.getSessionFac().openSession();
+            Query qr = sesion.createQuery("FROM " + clase.getSimpleName(), clase);
+            return qr.getResultList();
+        } catch (HibernateException he) {
+            throw new HibernateException("Ocurrio un error en la conexion [" + he.getMessage() + "]");
+        }finally{
+            HibernateUtil.cerrarSessionFac();
+        }
     }
 }
